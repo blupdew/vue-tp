@@ -1,16 +1,19 @@
 <script setup>
 import data from '@/data'
-// console.log(data)
+import MediaList from '../components/MediaList.vue'
+
+import { ref } from 'vue'
+const search = ref('')
 </script>
 
 <template>
   <div class="mediagallery">
-    <ul>
-        <li v-for="media in data" :key="media.id">
-            <a href="#">
-                <img :src="'/medias/' + media.img" :alt="media.title">
-            </a>
-        </li>
-    </ul>
+    <!-- Recherche -->
+    <p class="search">
+      <label for="searchtxt">Recherche</label>
+      <input id="searchtxt" type="search" v-model="search">
+    </p>
+    <MediaList :medias="data" filter="serie" :search="search" />
+    <MediaList :medias="data" filter="movie" :search="search" />
   </div>
 </template>

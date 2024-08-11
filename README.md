@@ -17,3 +17,4 @@
 ## Composants
 
 - Pour _MediaGallery_, on importe les données brutes et on les utilise directement dans le template avec une boucle `v-for` sans oublier `:key`. Les images étant dans le dossier public et le sous dossier médias, on les appelle avec le préfixe `/medias/`.
+- Pour _MediaList_, on passe en props les médias, la valeur du filtre et de la recherche, et on combine le tout grâce à un `computed` pour préserver la réactivité si une seule de ces valeurs change.

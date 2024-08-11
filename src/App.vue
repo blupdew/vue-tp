@@ -3,7 +3,6 @@ import { /*RouterLink,*/ RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 
 import { ref } from 'vue'
-const search = ref('')
 const notifications = ref(0)
 </script>
 
@@ -25,11 +24,6 @@ const notifications = ref(0)
         <button class="auth" v-on:click="notifications++">Connexion</button>
       </div>
     </header>
-    <!-- Recherche -->
-    <p class="search">
-      <label for="searchtxt">Recherche</label>
-      <input id="searchtxt" type="search" v-model="search">
-    </p>
     <RouterView />
   </div>
   <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - À Propos</footer>
