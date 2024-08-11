@@ -13,3 +13,7 @@
 
 - On ajoute `v-model` avec pour valeur le nom de la ref `search` lier celle-ci à l'input.
 - On utilise les refs dans le template pour afficher le nombre de notifications entre moustaches, et dans un attribut dynamique `style` qui peut être écrit de différentes façons `:style="notifications < 1 ? 'visibility: hidden' : ''"` ou `:style="{opacity: notifications > 0 ? 1 : 0}"` par exemple. On utilise les propriétés CSS visibility ou opacity plutôt qu'un v-show qui appliquerait `display: none` et ferait disparaître le bloc sans réserver l'espace (d'où le décalage lorsqu'il réapparaît).
+
+## Composants
+
+- Pour _MediaGallery_, on importe les données brutes et on les utilise directement dans le template avec une boucle `v-for` sans oublier `:key`. Les images étant dans le dossier public et le sous dossier médias, on les appelle avec le préfixe `/medias/`.

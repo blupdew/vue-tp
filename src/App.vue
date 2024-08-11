@@ -30,7 +30,7 @@ const notifications = ref(0)
       <label for="searchtxt">Recherche</label>
       <input id="searchtxt" type="search" v-model="search">
     </p>
+    <RouterView />
   </div>
-  <RouterView />
   <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - À Propos</footer>
 </template>

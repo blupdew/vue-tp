@@ -1,9 +1,9 @@
 <script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
+import MediaGallery from '../components/MediaGallery.vue'
 </script>
 
 <template>
   <main>
-
+    <MediaGallery></MediaGallery>
   </main>
 </template>
