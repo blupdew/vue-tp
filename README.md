@@ -22,3 +22,4 @@
 ## Événements
 
 - Au clic sur les boutons de défilement, on applique une transformation CSS avec pour valeur `translateX` et on exploite `v-bind` dans la partie `<style>` du composant pour éviter d'avoir à injecter un attribut dynamique `:style` (même si cela fonctionne aussi).
+- Pour donner le focus à la recherche (sans passer par l'attribut `autofocus` qui existe déjà) on ajoute un attribut `ref` et on nomme une variable de la même façon pour récupérer l'élément dans la partie script du composant, on évite de passer par une fonction DOM native (querySelector, getElementById, etc).
