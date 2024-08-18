@@ -34,3 +34,7 @@
 - On utilise `<RouterLink>` pour tous les liens internes avec pour attribut obligatoire `to`.
 - Le composant _MediaView_ est ajouté et attrape le paramètre `id` par l'intermédiaire de l'objet renvoyé par `useRoute()`, importé de `vue-router`.
 - Pour fermer la popin éventuellement ouverte on se branche sur `router.beforeEach` qui sera déclenché avant chaque changement de route.
+
+## Store
+
+- Dès le store `medias` créé dans le dossier `stores` et déclaré par `defineStore`, avec pour (le moment) seule `ref` le tableau des médias, on l'exploite à tout endroit utile via `useMediaStore()` : _MediaView_ mais aussi _MediaGallery_/_MediaList_.

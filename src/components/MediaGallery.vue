@@ -1,10 +1,13 @@
 <script setup>
-import data from '@/data'
 import MediaList from '../components/MediaList.vue'
 
 import { ref, onMounted } from 'vue'
 const search = ref('')
 const recherche = ref(null)
+
+// Store des médias
+import { useMediaStore } from '@/stores/medias'
+const mediaStore = useMediaStore()
 
 onMounted(() => {
   recherche.value.focus()
@@ -18,7 +21,7 @@ onMounted(() => {
       <label for="searchtxt">Recherche</label>
       <input id="searchtxt" type="search" v-model="search" ref="recherche">
     </p>
-    <MediaList :medias="data" filter="serie" :search="search" />
-    <MediaList :medias="data" filter="movie" :search="search" />
+    <MediaList :medias="mediaStore.medias" filter="serie" :search="search" />
+    <MediaList :medias="mediaStore.medias" filter="movie" :search="search" />
   </div>
 </template>
