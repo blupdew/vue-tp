@@ -38,3 +38,4 @@
 ## Store
 
 - Dès le store `medias` créé dans le dossier `stores` et déclaré par `defineStore`, avec pour (le moment) seule `ref` le tableau des médias, on l'exploite à tout endroit utile via `useMediaStore()` : _MediaView_ mais aussi _MediaGallery_/_MediaList_.
+- On optimise (en option) en utilisant un getter réactif vers le store, cela permet de ne pas déclencher les actions uniquement au chargement de la vue et de rafraîchir le rendu si le store change.

@@ -1,25 +1,18 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
 const route = useRoute()
-const router = useRouter()
 
 import { useMediaStore } from '@/stores/medias'
 const mediaStore = useMediaStore()
 
-const media = ref({})
+// Récupère l'objet media directement dans le store de manière réactive grâce à computed
+const media = computed(() => mediaStore.getMedia(route.params.id))
 
-onMounted(() => {
-  media.value = mediaStore.medias.find(m => m.id === Number(route.params.id))
-  // S'il n'y a pas de média trouvé dans les données
-  if(!media.value) {
-    // On redirige vers l'accueil
-    router.push({name: 'home'}) // ou '/' pour rediriger vers l'accueil
-  } else {
-    // On change le titre de la page active
-    document.title = 'Media ' + media.value.title
-  }
-})
+watch(media, (newMedia) => {
+  // On change le titre de la page active, pour cela on utilise un watcher pour le propager à une propriété native
+  document.title = 'Media ' + newMedia?.title
+}, { immediate: true }) // On ajoute cette option pour le déclencher dès le premier montage
 </script>
 
 <template>
