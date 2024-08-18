@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 
+const url = import.meta.env.VITE_API_URL
+
 const props = defineProps({
     medias: {
         type: Array,
@@ -50,7 +52,7 @@ function next() {
         <ul ref="el">
             <li v-for="media in mediasFiltered" :key="media.id">
                 <RouterLink :to="'/media/' + media.id">
-                    <img :src="'/medias/' + media.img" :alt="media.title">
+                    <img :src="url + 'assets/' + media.image" :alt="media.title">
                 </RouterLink>
             </li>
         </ul>

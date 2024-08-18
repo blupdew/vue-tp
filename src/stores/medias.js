@@ -1,10 +1,31 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-import data from '@/data.js'
+const url = import.meta.env.VITE_API_URL // URL de l'API
 
 export const useMediaStore = defineStore('medias', () => {
-  const medias = ref(data)
+  const medias = ref([])
   const getMedia = computed(() => (id) => medias.value.find(m => m.id === Number(id)))
-  return { medias, getMedia }
+
+  async function loadData(force = false) {
+    // S'il y a des médias et qu'on ne force pas le rechargement...
+    if(medias.value.length > 0 && !force) return
+    try {
+      const response = await fetch(url+'items/medias/',{
+        method: 'GET',
+        // body: JSON.stringify({token: '...'})
+      })
+      const json = await response.json()
+      medias.value = json?.data // Attention il y a une sous-propriété "data" dans la réponse
+      console.log('loadData OK : ' + medias.value.length + ' medias')
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  // Pré-remplit les données
+  // mais on pourrait contrôler ceci plus finement en l'appelant depuis App ou un autre composant
+  loadData()
+
+  return { medias, getMedia, loadData }
 })
