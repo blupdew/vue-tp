@@ -28,3 +28,9 @@
 
 - On crée les composants attendus, celui constituant la _popin_ est quasiment vide car il ne s'agit que d'une coquille : un `<slot>` et un bouton de fermeture qui émet l'événement correspondant.
 - Pour les comportements spécifiques, on utilise : un écouteur d'événement natif attaché à `window` pour attraper l'appui de touche sur l'ensemble du document ; un `<KeepAlive>` englobant tout le composant de _popin_ pour préserver son état.
+
+## Routing
+
+- On utilise `<RouterLink>` pour tous les liens internes avec pour attribut obligatoire `to`.
+- Le composant _MediaView_ est ajouté et attrape le paramètre `id` par l'intermédiaire de l'objet renvoyé par `useRoute()`, importé de `vue-router`.
+- Pour fermer la popin éventuellement ouverte on se branche sur `router.beforeEach` qui sera déclenché avant chaque changement de route.

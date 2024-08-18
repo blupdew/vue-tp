@@ -1,6 +1,5 @@
 <script setup>
-import { /*RouterLink,*/ RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 import MaryPopin from './components/MaryPopin.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
@@ -11,6 +10,8 @@ const notifications = ref(0)
 // État des popins (serait mieux géré dans un store avec un nombre de valeurs souple)
 const showPopinLogin = ref(false)
 const showPopinRegister = ref(false)
+
+const router = useRouter()
 
 // Un écouteur d'événement global pour la touche echap
 onMounted(() => {
@@ -31,6 +32,11 @@ function echapHandler(e) {
   }
 }
 
+// Ferme la popin avant chaque changement de route
+router.beforeEach(() => {
+  showPopinLogin.value = false
+  showPopinRegister.value = false
+})
 </script>
 
 <template>
@@ -41,8 +47,8 @@ function echapHandler(e) {
       </div>
       <nav id="nav">
         <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/about">À propos</a></li>
+          <li><RouterLink to="/">Accueil</RouterLink></li>
+          <li><RouterLink to="/about">À propos</RouterLink></li>
         </ul>
       </nav>
       <div id="profile">
@@ -53,7 +59,7 @@ function echapHandler(e) {
     </header>
     <RouterView />
   </div>
-  <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - À Propos</footer>
+  <footer>© Vueflix {{ new Date().getFullYear() }} - Mentions légales - <RouterLink :to="{name: 'about'}">À Propos</RouterLink></footer>
 
   <!-- KeepAlive nous permet de constater que l'état est préservé -->
   <KeepAlive>

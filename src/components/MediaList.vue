@@ -49,9 +49,9 @@ function next() {
     <template v-if="mediasFiltered.length > 0"><!-- On se sert de template pour regrouper liste et boutons dans la condition -->
         <ul ref="el">
             <li v-for="media in mediasFiltered" :key="media.id">
-                <a href="#">
+                <RouterLink :to="'/media/' + media.id">
                     <img :src="'/medias/' + media.img" :alt="media.title">
-                </a>
+                </RouterLink>
             </li>
         </ul>
         <input type="button" class="next" title="Suivant" value="▶" v-on:click="next">
