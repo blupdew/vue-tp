@@ -1,0 +1,15 @@
+<template>
+  <form class="login">
+    <p><img src="/logo.svg"></p>
+    <h3>S'inscrire</h3>
+    <p>
+      <label for="login">Identifiant</label>
+      <input type="text" id="login" autocomplete="off" v-model="login">
+    </p>
+    <p>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" autocomplete="off" v-model="password">
+    </p>
+    <input type="submit" value="Valider">
+  </form>
+</template>

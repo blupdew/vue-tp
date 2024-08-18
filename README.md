@@ -23,3 +23,8 @@
 
 - Au clic sur les boutons de défilement, on applique une transformation CSS avec pour valeur `translateX` et on exploite `v-bind` dans la partie `<style>` du composant pour éviter d'avoir à injecter un attribut dynamique `:style` (même si cela fonctionne aussi).
 - Pour donner le focus à la recherche (sans passer par l'attribut `autofocus` qui existe déjà) on ajoute un attribut `ref` et on nomme une variable de la même façon pour récupérer l'élément dans la partie script du composant, on évite de passer par une fonction DOM native (querySelector, getElementById, etc).
+
+## Slots
+
+- On crée les composants attendus, celui constituant la _popin_ est quasiment vide car il ne s'agit que d'une coquille : un `<slot>` et un bouton de fermeture qui émet l'événement correspondant.
+- Pour les comportements spécifiques, on utilise : un écouteur d'événement natif attaché à `window` pour attraper l'appui de touche sur l'ensemble du document ; un `<KeepAlive>` englobant tout le composant de _popin_ pour préserver son état.
