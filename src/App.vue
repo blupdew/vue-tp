@@ -5,6 +5,10 @@ import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 
 import { ref, onMounted, onUnmounted } from 'vue'
+
+import { useUserStore } from '@/stores/user'
+const userStore = useUserStore()
+
 const notifications = ref(0)
 
 // État des popins (serait mieux géré dans un store avec un nombre de valeurs souple)
@@ -52,9 +56,13 @@ router.beforeEach(() => {
         </ul>
       </nav>
       <div id="profile">
-        <span class="notifications" :style="notifications < 1 ? 'visibility: hidden' : ''"><span>{{ notifications }}</span> notifications</span>
-        <button class="register" v-on:click="showPopinRegister = true, showPopinLogin = false">S'inscrire</button>
-        <button class="auth" v-on:click="showPopinRegister = false, showPopinLogin = true">Connexion</button>
+        <template v-if="userStore.isAuthenticated">
+          <span class="notifications"><span>{{ notifications }}</span> notifications</span>
+        </template>
+        <template v-else>
+          <button class="register" v-on:click="showPopinRegister = true, showPopinLogin = false">S'inscrire</button>
+          <button class="auth" v-on:click="showPopinRegister = false, showPopinLogin = true">Connexion</button>
+        </template>
       </div>
     </header>
     <RouterView />

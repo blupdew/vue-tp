@@ -44,3 +44,11 @@
 
 - En premier lieu on charge les données publiques c'est-à-dire qu'on interroge l'API pour remplacer le tableau statique des médias précédemment chargé depuis un fichier local. Il faut bien faire attention à utiliser des promesses (async/await) et à bien attendre de pouvoir traiter le résultat. La structure du tableau est la même donc les autres composants ne changent pas.
 - On n'oublie pas d'utiliser le chemin vers `assets/` de l'API pour charger les bonnes images distantes et non plus celles en local.
+
+## API suite
+
+- Pour traiter les formulaires on ajoute des `v-model` pour récupérer les valeurs des champs.
+- S'inscrire : On se branche bien sur l'événement `submit` de l'élément `<form>` par `v-on:submit.prevent="..."` et on écrit dans la fonction/callback appelée une requête `fetch()` avec les différents paramètres demandés ; on prend le soin de bien traiter la promesse.
+- Connexion : On adopte un comportement similaire au précédent, cette fois-ci en traitant plus finement les informations retournées pour alimenter le store. Il ne faut pas oublier d'envoyer l'en-tête `Content-Type`. Si la réponse est positive on peut déclencher un nouvel appel au chargement des données depuis l'API en ajoutant un en-tête comportant le token `access_token`.
+- On ajoute un store `user` pour bien séparer proprement le stockage, même s'il reste basique au début et permettre l'écriture d'un getter `isAuthenticated` simplifiant son utilisation/compréhension à d'autres endroits de l'application.
+- On peut tenter de mutualiser les deux formulaires en un seul composat, en ajoutant une prop qui définit leur rôle et le titre affiché en conséquence.
